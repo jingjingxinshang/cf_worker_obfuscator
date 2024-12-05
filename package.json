@@ -1,19 +1,30 @@
 {
-  "name": "js-obfuscator",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "cf-worker-obfuscator",
+  "private": false,
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "一个简单的JavaScript代码混淆工具",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "javascript-obfuscator": "^4.1.1",
-    "vue": "^3.5.13"
+    "javascript-obfuscator": "^4.1.0",
+    "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.2.1",
-    "vite": "^6.0.1"
-  }
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jingjingxinshang/cf_worker_obfuscator"
+  },
+  "keywords": [
+    "javascript",
+    "obfuscator",
+    "vue",
+    "tool"
+  ]
 }

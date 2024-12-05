@@ -87,6 +87,19 @@
         class="output-area"
       ></textarea>
     </div>
+
+    <footer class="footer">
+      <p>
+        © 2024 JS代码混淆工具 | 
+        <a 
+          href="https://github.com/yourusername/js-obfuscator-tool/blob/main/LICENSE" 
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          MIT License
+        </a>
+      </p>
+    </footer>
   </div>
 </template>
 
@@ -296,5 +309,23 @@ input[type="text"] {
 
 h3 {
   margin: 0;
+}
+
+.footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  text-align: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.footer a {
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
 }
 </style> 
