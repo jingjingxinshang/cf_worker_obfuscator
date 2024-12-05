@@ -15,5 +15,5 @@ export default defineConfig({
       }
     }
   },
-  base: '/'
+  base: '/cf_worker_obfuscator/'
 })
