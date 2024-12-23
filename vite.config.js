@@ -4,16 +4,22 @@ import vue from '@vitejs/plugin-vue'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  base: './',
   build: {
-    chunkSizeWarningLimit: 2000,
+    outDir: 'dist',
+    assetsDir: 'assets',
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor': ['vue'],
-          'obfuscator': ['javascript-obfuscator']
-        }
+        manualChunks: undefined,
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
       }
     }
   },
-  base: '/cf_worker_obfuscator/'
+  server: {
+    headers: {
+      'Content-Type': 'application/javascript'
+    }
+  }
 })

@@ -60,6 +60,113 @@
           输出文件名
         </label>
       </div>
+
+      <div class="option-group">
+        <h4>代码转换选项</h4>
+        <div class="option-item">
+          <label>
+            <input type="checkbox" v-model="options.controlFlowFlattening">
+            控制流扁平化
+          </label>
+          <div class="sub-option" v-if="options.controlFlowFlattening">
+            <label>
+              扁平化概率:
+              <input 
+                type="number" 
+                v-model.number="options.controlFlowFlatteningThreshold"
+                min="0"
+                max="1"
+                step="0.1"
+              >
+            </label>
+          </div>
+        </div>
+        
+        <div class="option-item">
+          <label>
+            <input type="checkbox" v-model="options.deadCodeInjection">
+            注入死代码
+          </label>
+          <div class="sub-option" v-if="options.deadCodeInjection">
+            <label>
+              注入概率:
+              <input 
+                type="number" 
+                v-model.number="options.deadCodeInjectionThreshold"
+                min="0"
+                max="1"
+                step="0.1"
+              >
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="option-group">
+        <h4>字符串转换选项</h4>
+        <div class="option-item">
+          <label>
+            <input type="checkbox" v-model="options.stringArray">
+            启用字符串数组
+          </label>
+        </div>
+        <div class="option-item" v-if="options.stringArray">
+          <label>
+            <input type="checkbox" v-model="options.stringArrayCallsTransform">
+            转换字符串数组调用
+          </label>
+        </div>
+        <div class="option-item" v-if="options.stringArray">
+          <label>
+            <input type="checkbox" v-model="options.stringArrayRotate">
+            轮转字符串数组
+          </label>
+        </div>
+        <div class="option-item" v-if="options.stringArray">
+          <label>
+            <input type="checkbox" v-model="options.stringArrayShuffle">
+            打乱字符串数组
+          </label>
+        </div>
+        <div class="option-item" v-if="options.stringArray">
+          <label>
+            字符串数组阈值:
+            <input 
+              type="number" 
+              v-model.number="options.stringArrayThreshold"
+              min="0"
+              max="1"
+              step="0.1"
+            >
+          </label>
+        </div>
+      </div>
+
+      <div class="option-group">
+        <h4>代码保护选项</h4>
+        <div class="option-item">
+          <label>
+            <input type="checkbox" v-model="options.selfDefending">
+            启用自我保护
+          </label>
+        </div>
+        <div class="option-item">
+          <label>
+            <input type="checkbox" v-model="options.splitStrings">
+            拆分字符串
+          </label>
+          <div class="sub-option" v-if="options.splitStrings">
+            <label>
+              拆分长度:
+              <input 
+                type="number" 
+                v-model.number="options.splitStringsChunkLength"
+                min="1"
+              >
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="button-group">
@@ -121,9 +228,25 @@ export default {
         unicodeEscapeSequence: true,
         identifierNamesGenerator: 'hexadecimal',
         identifiersPrefix: 'a0_0x',
-        stringArray: false,
         target: 'service-worker',
-        renameGlobals: true
+        renameGlobals: true,
+        
+        controlFlowFlattening: true,
+        controlFlowFlatteningThreshold: 0.8,
+        deadCodeInjection: true,
+        deadCodeInjectionThreshold: 0.5,
+        stringArray: true,
+        stringArrayEncoding: ['base64'],
+        stringArrayThreshold: 1,
+        stringArrayCallsTransform: true,
+        stringArrayRotate: true,
+        stringArrayShuffle: true,
+        
+        splitStrings: true,
+        splitStringsChunkLength: 3,
+        numbersToExpressions: true,
+        
+        selfDefending: true,
       }
     }
   },
@@ -327,5 +450,47 @@ h3 {
 
 .footer a:hover {
   text-decoration: underline;
+}
+
+.option-group {
+  border: 1px solid #eee;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+.option-group h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.sub-option {
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.sub-option input[type="number"] {
+  width: 60px;
+  padding: 3px;
+  margin-left: 5px;
+}
+
+select {
+  margin-left: 10px;
+  padding: 3px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+select[multiple] {
+  height: auto;
+  min-height: 80px;
+}
+
+.help-text {
+  display: block;
+  margin-top: 5px;
+  color: #666;
+  font-size: 0.8em;
 }
 </style> 
